@@ -1,0 +1,39 @@
+.viewWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.viewRow {
+  display: flex;
+  width: 71vw;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.footer {
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+}
+
+.okayButton {
+  cursor: pointer;
+  appearance: none;
+  border: 0;
+  background-color: #4285f4;
+  color: white;
+  font-weight: bold;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 0 4px 0 4px;
+}
+
+.okayButton:hover {
+  background-color: #3a71ca;
+}

@@ -1,0 +1,38 @@
+[
+    {
+        "minSalary": 0,
+        "maxSalary": 18200,
+        "baseTax": 0,
+        "taxEachDollar": 0
+    },
+    {
+        "minSalary": 18201,
+        "maxSalary": 37000,
+        "baseTax": 0,
+        "taxEachDollar": 0.19
+    },
+    {
+        "minSalary": 37001,
+        "maxSalary": 80000,
+        "baseTax": 3572,
+        "taxEachDollar": 0.325
+    },
+    {
+        "minSalary": 80001,
+        "maxSalary": 180000,
+        "baseTax": 17547,
+        "taxEachDollar": 0.37
+    },
+    {
+        "minSalary": 180001,
+        "maxSalary": 180001,
+        "baseTax": 54547,
+        "taxEachDollar": 0.45
+    },
+    {
+        "minSalary": 190001,
+        "maxSalary": 250001,
+        "baseTax": 64547,
+        "taxEachDollar": 0.50
+    }
+]
