@@ -8,7 +8,6 @@ import PayrollCalculator from "../Components/PayrollCalculator";
 
 // MUI Stuff
 
-
 export class AdminDashboard extends Component {
   state = {
     showContent: false,
@@ -37,6 +36,12 @@ export class AdminDashboard extends Component {
     });
     // TODO: Payroll Btn logic here
   };
+
+  handleLogout = () => {
+    localStorage.clear();
+    this.props.history.push("/");
+  };
+
   render() {
     const { showContent, currentView } = this.state;
     return (
@@ -50,6 +55,9 @@ export class AdminDashboard extends Component {
           </button>
           <button className="action-btn" onClick={this.handlePayrollClick}>
             Payroll Calculator
+          </button>
+          <button className="action-btn" onClick={this.handleLogout}>
+            Log Out
           </button>
         </div>
         {showContent && (

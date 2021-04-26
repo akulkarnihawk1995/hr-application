@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from "axios";
+
 // Components
 import UpdateForm from "../Components/UpdateForm";
 import ViewEmployee from "../Components/ViewComponent";
@@ -7,7 +9,6 @@ import ViewEmployee from "../Components/ViewComponent";
 import withStyles from "@material-ui/core/styles/withStyles";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
-// import { identify_loginString } from "../../../utils/validators";
 
 const styles = {
   employeeName: {
@@ -61,8 +62,15 @@ export class CustomTableRow extends Component {
     expandRow: false,
     viewComponent: false,
     updateComponent: false,
+    snackbaropen: false,
+    snackbarmessage: "",
   };
 
+  snackbarclose = (event) => {
+    this.setState({
+      snackbaropen: false,
+    });
+  };
   handleView = () => {
     this.toggleView();
   };
@@ -71,15 +79,32 @@ export class CustomTableRow extends Component {
     const id = this.props.data._id;
     console.log("Update ID = " + id);
     this.toggleUpdate();
-
   };
 
   handleDelete = () => {
     const id = this.props.data._id;
     console.log("Delete ID = " + id);
-    // Delete Logic here
+    console.log(localStorage.getItem("token"));
+    axios
+      .post(`/api/admin/${id}/delete`, this.state, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"), //the token is a variable which holds the token
+        },
+      })
+      .then((res) => {
+        this.setState({
+          snackbarmessage: "User deleted successfully",
+          snackbaropen: true,
+        });
+        this.props.getEmployeeData();
+      })
+      .catch((err) => {
+        this.setState({
+          snackbarmessage: "User Could not be deleted",
+          snackbaropen: true,
+        });
+      });
   };
-
   toggleView = () => {
     this.setState({
       viewComponent: !this.state.viewComponent,

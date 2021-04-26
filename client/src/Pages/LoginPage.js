@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 import "../styles/LoginPage.css";
 
 // Components
@@ -16,7 +16,7 @@ import Typography from "@material-ui/core/Typography";
 
 // Icons
 import { FiLock } from "react-icons/fi";
-import history from "../history"
+
 const styles = {
   paper: {
     display: "flex",
@@ -39,13 +39,10 @@ const styles = {
 };
 
 export class LoginPage extends Component {
-  constructor(){
-    super()
-  }
   state = {
     email: "",
     password: "",
-    err:""
+    err: "",
   };
 
   handleChange = (event) => {
@@ -57,18 +54,19 @@ export class LoginPage extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
-    axios.post("/api/user/login",this.state)
-      .then(res=>{
-        if(res){
-          localStorage.setItem('token',res.data.accessToken);
-          this.props.history.push("/dashboard")
+    axios
+      .post("/api/user/login", this.state)
+      .then((res) => {
+        if (res) {
+          localStorage.setItem("token", res.data.accessToken);
+          this.props.history.push("/dashboard");
         }
       })
-      .catch(res=>{
+      .catch((res) => {
         this.setState({
-          err:res.data
-        })
-      })
+          err: res.data,
+        });
+      });
   };
   render() {
     const { classes } = this.props;
@@ -76,9 +74,7 @@ export class LoginPage extends Component {
     console.log(err);
     return (
       <div className={classes.paper}>
-        {
-          err && <SnackBar></SnackBar>
-        }
+        {err && <SnackBar></SnackBar>}
         <Avatar className={classes.avatar}>
           <FiLock />
         </Avatar>

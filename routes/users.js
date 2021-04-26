@@ -110,3 +110,18 @@ exports.getUsers = (request,response) =>{
     const employeeID = request.params.username;
     
   }
+
+
+  exports.getUser = (request,response) =>{
+    const user_id = request.user_id;
+    console.log(user_id)
+    const user_data = {}
+    User.findOne({_id:user_id})
+        .then(user=>{
+          user_data.profile = user
+          response.status(200).json(user_data)
+        })
+        .catch(err=>{
+          response.status(500).json({ err: "" + err });
+        })
+  }
